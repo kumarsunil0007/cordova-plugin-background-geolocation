@@ -1,14 +1,37 @@
 // Type definitions for cordova-plugin-mauron85-background-geolocation.
 // Project: https://github.com/mauron85/cordova-plugin-background-geolocation
-// Definitions by: Mauron85 (@mauron85), Norbert Györög (@djereg)
+// Definitions by: Mauron85 (@betasoft), Norbert Györög (@djereg)
 // Definitions: https://github.com/mauron85/cordova-plugin-background-geolocation/blob/master/www/BackgroundGeolocation.d.ts
 
-type Event = 'location' | 'stationary' | 'activity' | 'start' | 'stop' | 'error' | 'authorization' | 'foreground' | 'background' | 'abort_requested' | 'http_authorization';
-type HeadlessTaskEventName = 'location' | 'stationary' | 'activity';
-type iOSActivityType = 'AutomotiveNavigation' | 'OtherNavigation' | 'Fitness' | 'Other';
-type NativeProvider = 'gps' | 'network' | 'passive' | 'fused';
-type ActivityType = 'IN_VEHICLE' | 'ON_BICYCLE' | 'ON_FOOT' | 'RUNNING' | 'STILL' | 'TILTING' | 'UNKNOWN' | 'WALKING';
-type LogLevel = 'TRACE' | 'DEBUG' | 'INFO' | 'WARN' | 'ERROR';
+type Event =
+  | "location"
+  | "stationary"
+  | "activity"
+  | "start"
+  | "stop"
+  | "error"
+  | "authorization"
+  | "foreground"
+  | "background"
+  | "abort_requested"
+  | "http_authorization";
+type HeadlessTaskEventName = "location" | "stationary" | "activity";
+type iOSActivityType =
+  | "AutomotiveNavigation"
+  | "OtherNavigation"
+  | "Fitness"
+  | "Other";
+type NativeProvider = "gps" | "network" | "passive" | "fused";
+type ActivityType =
+  | "IN_VEHICLE"
+  | "ON_BICYCLE"
+  | "ON_FOOT"
+  | "RUNNING"
+  | "STILL"
+  | "TILTING"
+  | "UNKNOWN"
+  | "WALKING";
+type LogLevel = "TRACE" | "DEBUG" | "INFO" | "WARN" | "ERROR";
 type LocationProvider = 0 | 1 | 2;
 type AuthorizationStatus = 0 | 1 | 2;
 type AccuracyLevel = 0 | 100 | 1000 | 10000 | number;
@@ -371,7 +394,7 @@ export interface Location {
 }
 
 export interface StationaryLocation extends Location {
-  radius: number
+  radius: number;
 }
 
 export interface LocationError {
@@ -456,7 +479,6 @@ export interface HeadlessTaskEvent {
 }
 
 export interface BackgroundGeolocationPlugin {
-
   DISTANCE_FILTER_PROVIDER: LocationProvider;
   ACTIVITY_PROVIDER: LocationProvider;
   RAW_PROVIDER: LocationProvider;
@@ -536,7 +558,7 @@ export interface BackgroundGeolocationPlugin {
    */
   getStationaryLocation(
     success: (location: StationaryLocation | null) => void,
-    fail?: (error: BackgroundGeolocationError) => void,
+    fail?: (error: BackgroundGeolocationError) => void
   ): void;
 
   /**
@@ -696,7 +718,6 @@ export interface BackgroundGeolocationPlugin {
    */
   removeAllListeners(event?: Event): void;
 
-
   /**
    * Start background task (iOS only)
    *
@@ -746,9 +767,7 @@ export interface BackgroundGeolocationPlugin {
    *      return 'Processing event: ' + event.name; // will be logged
    *  });
    */
-  headlessTask(
-    task: (event: HeadlessTaskEvent) => void
-  ): void;
+  headlessTask(task: (event: HeadlessTaskEvent) => void): void;
 
   /**
    * Register location event listener.
@@ -756,10 +775,7 @@ export interface BackgroundGeolocationPlugin {
    * @param eventName
    * @param callback
    */
-  on(
-    eventName: 'location',
-    callback: (location: Location) => void
-  ): void;
+  on(eventName: "location", callback: (location: Location) => void): void;
 
   /**
    * Register stationary location event listener.
@@ -768,7 +784,7 @@ export interface BackgroundGeolocationPlugin {
    * @param callback
    */
   on(
-    eventName: 'stationary',
+    eventName: "stationary",
     callback: (location: StationaryLocation) => void
   ): void;
 
@@ -778,10 +794,7 @@ export interface BackgroundGeolocationPlugin {
    * @param eventName
    * @param callback
    */
-  on(
-    eventName: 'activity',
-    callback: (activity: Activity) => void
-  ): void;
+  on(eventName: "activity", callback: (activity: Activity) => void): void;
 
   /**
    * Register start event listener.
@@ -791,10 +804,7 @@ export interface BackgroundGeolocationPlugin {
    * @param eventName
    * @param callback
    */
-  on(
-    eventName: 'start',
-    callback: () => void
-  ): void;
+  on(eventName: "start", callback: () => void): void;
 
   /**
    * Register stop event listener.
@@ -804,10 +814,7 @@ export interface BackgroundGeolocationPlugin {
    * @param eventName
    * @param callback
    */
-  on(
-    eventName: 'stop',
-    callback: () => void
-  ): void;
+  on(eventName: "stop", callback: () => void): void;
 
   /**
    * Register error listener.
@@ -816,7 +823,7 @@ export interface BackgroundGeolocationPlugin {
    * @param callback
    */
   on(
-    eventName: 'error',
+    eventName: "error",
     callback: (error: BackgroundGeolocationError) => void
   ): void;
 
@@ -830,7 +837,7 @@ export interface BackgroundGeolocationPlugin {
    * @param callback
    */
   on(
-    eventName: 'authorization',
+    eventName: "authorization",
     callback: (status: AuthorizationStatus) => void
   ): void;
 
@@ -842,10 +849,7 @@ export interface BackgroundGeolocationPlugin {
    * @param eventName
    * @param callback
    */
-  on(
-    eventName: 'foreground',
-    callback: () => void
-  ): void;
+  on(eventName: "foreground", callback: () => void): void;
 
   /**
    * Register background event listener.
@@ -855,10 +859,7 @@ export interface BackgroundGeolocationPlugin {
    * @param eventName
    * @param callback
    */
-  on(
-    eventName: 'background',
-    callback: () => void
-  ): void;
+  on(eventName: "background", callback: () => void): void;
 
   /**
    * Register abort_requested event listener.
@@ -868,10 +869,7 @@ export interface BackgroundGeolocationPlugin {
    * @param eventName
    * @param callback
    */
-  on(
-    eventName: 'abort_requested',
-    callback: () => void
-  ): void;
+  on(eventName: "abort_requested", callback: () => void): void;
 
   /**
    * Register http_authorization event listener.
@@ -881,11 +879,7 @@ export interface BackgroundGeolocationPlugin {
    * @param eventName
    * @param callback
    */
-  on(
-    eventName: 'http_authorization',
-    callback: () => void
-  ): void;
-
+  on(eventName: "http_authorization", callback: () => void): void;
 }
 
 declare const BackgroundGeolocation: BackgroundGeolocationPlugin;
